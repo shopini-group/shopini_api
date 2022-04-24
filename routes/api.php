@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\AuthController;
+use App\Http\Controllers\api\PremissionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,5 +31,13 @@ Route::post('Confirm_Two_Factor_Code', [AuthController::class,'Confirm_Two_Facto
 Route::group(['middleware'=>['auth:contacts']],function(){
 
     Route::get('InsertLog', [AuthController::class,'InsertLog']);
+    Route::get('Contact_Permisson', [PremissionController::class,'Contact_Permisson']);
+    
+});
+
+Route::group(['middleware'=>['auth:staffs']],function(){
+
+    Route::get('StaffPermission', [PremissionController::class,'StaffPermission']);
 
 });
+
